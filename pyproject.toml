@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nxt-data-api"
+version = "0.1.0"
+description = "넥스트레이드(nextrade.co.kr) 거래현황 호출 클라이언트 — 정규시장/종가매매 일별 스냅샷"
+requires-python = ">=3.9"
+dependencies = [
+    "requests",
+    "pandas",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["nxt_data_api*"]
