@@ -172,6 +172,20 @@ ENDPOINTS = {
         "post": ["drop_paging_fields", "coerce_types"],
         "screen": "거래현황 > 종가매매",
     },
+    # 거래현황 > 대량·바스켓매매. 그날 대량거래가 있었던 종목만 나온다(하루 0~수 건).
+    # isuAccTdQty  = 그 종목의 그날 총거래량(대량 포함)
+    # bltdAccTdQty = 그중 대량·바스켓 몫
+    # 정규시장·종가매매 응답에는 대량이 빠져 있어, 셋을 합쳐야 총거래량이 된다:
+    #   regular_market + closing_price + 대량 = isuAccTdQty
+    # (2026-02-06 실측: 005930 18,788,510 + 85,350 = 18,873,860 원 단위 일치)
+    "block_trade": {
+        "path": "bltdinfo/bltdinfoList.do",
+        "list_key": "bltdinfoList",
+        "referer": "/menu/transactionStatusBasket/menuList.do",
+        "defaults": dict(_GRID_DEFAULTS),
+        "post": ["drop_paging_fields", "coerce_types"],
+        "screen": "거래현황 > 대량·바스켓매매",
+    },
 }
 
 
